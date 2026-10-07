@@ -71,10 +71,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     --brand-dark: #07121C;
     --hair: #D9D6E0;
     --tint: #F3EFF8;
-    --radius: 2px;
+    --radius: 6px;
+    --radius-card: 12px;
     --display: 'Yeseva One', Georgia, serif;
     --text: 'DM Sans', Arial, sans-serif;
   }
+  html, body { margin: 0; padding: 0; }
   .lp-page { font-family: var(--text); color: var(--body); background: #FFFFFF; line-height: 1.55; font-size: 17px; }
   .lp-page *, .lp-page *::before, .lp-page *::after { box-sizing: border-box; }
   .lp-page img { max-width: 100%; height: auto; display: block; }
@@ -93,8 +95,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .lp-btn:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 2px; box-shadow: 0 0 0 7px var(--brand-dark); }
   .lp-btn-ghost { background: transparent; color: #FFFFFF; border: 2px solid rgba(255,255,255,.6); }
   .lp-btn-ghost:hover, .lp-btn-ghost:focus-visible { background: rgba(255,255,255,.1); border-color: #FFFFFF; }
-  .lp-tel { display: inline-flex; align-items: center; min-height: 48px; font-weight: 700; font-size: 20px; color: var(--ink); text-decoration: none; white-space: nowrap; }
-  .lp-tel:hover { color: var(--brand); }
   .lp-muted { color: var(--muted); }
   .lp-small { font-size: .9rem; }
 
@@ -105,29 +105,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .lp-head-right { display: flex; align-items: center; gap: 22px; }
 
   /* ---------- hero ---------- */
-  .lp-hero { background: var(--brand-dark); color: #FFFFFF; position: relative; overflow: hidden; }
-  .lp-hero-in { max-width: 1200px; margin: 0 auto; padding: clamp(1.75rem, 3vw, 2.75rem) 24px clamp(3rem, 5vw, 4rem); display: grid; grid-template-columns: minmax(0, 640px) minmax(280px, 1fr); gap: 40px; align-items: end; }
-  .lp-hero-copy { position: relative; z-index: 2; min-width: 0; }
-  .lp-kicker { font-family: var(--display); font-size: clamp(1.1rem, 1.6vw, 1.35rem); color: rgba(255,255,255,.85); margin: 0 0 6px; }
-  .lp-hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(2.25rem, 4.4vw, 3.6rem); line-height: 1.04; text-transform: uppercase; letter-spacing: .02em; color: #FFFFFF; margin: 0 0 16px; text-wrap: balance; }
-  .lp-hero-sub { color: rgba(255,255,255,.88); font-size: 1.05rem; max-width: 34em; margin: 0 0 18px; }
-  .lp-proofline { display: none; font-size: 12px; font-weight: 700; letter-spacing: .03em; line-height: 1.2; color: rgba(255,255,255,.9); margin: 0 0 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .lp-proofline span { margin: 0 7px; color: rgba(255,255,255,.5); }
-  .lp-hero-art { position: relative; align-self: stretch; min-height: 520px; }
-  .lp-hero-art img { position: absolute; right: 0; bottom: 0; width: min(100%, 520px); height: auto;
-    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 22%, #000 100%), linear-gradient(to bottom, transparent 0, #000 18%, #000 100%);
-    mask-image: linear-gradient(to right, transparent 0, #000 22%, #000 100%), linear-gradient(to bottom, transparent 0, #000 18%, #000 100%);
-    -webkit-mask-composite: source-in; mask-composite: intersect; }
-  .lp-hero-cap { position: absolute; right: 0; bottom: 0; z-index: 2; background: rgba(7,18,28,.85); color: #FFFFFF; font-size: .85rem; font-weight: 600; padding: 8px 14px; }
+  .lp-hero { position: relative; background: var(--brand-dark) url('img/phoenix-palms-texture.webp') center / cover no-repeat; color: #FFFFFF; }
+  .lp-hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,18,28,.8), rgba(7,18,28,.92)); }
+  .lp-hero-in { position: relative; max-width: 760px; margin: 0 auto; padding: clamp(2rem, 4vw, 3rem) 24px clamp(2.5rem, 5vw, 4rem); text-align: center; }
+  .lp-hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(2.25rem, 4.4vw, 3.6rem); line-height: 1.04; text-transform: uppercase; letter-spacing: .02em; color: #FFFFFF; margin: 0 0 18px; text-wrap: balance; }
 
-  /* proof strip under the card */
-  .lp-proof-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; margin: 18px 0 0; }
+  /* proof strip above the card */
+  .lp-proof-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 18px; margin: 0 auto 22px; max-width: 680px; }
   @media (min-width: 720px) { .lp-proof-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  .lp-proof-strip span { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; font-weight: 700; line-height: 1.35; color: rgba(255,255,255,.9); }
+  .lp-proof-strip span { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; font-weight: 700; line-height: 1.35; color: rgba(255,255,255,.9); text-align: left; }
   .lp-proof-strip svg { flex: none; margin-top: 2px; }
 
   /* ---------- survey card ---------- */
-  .quiz-card { background: #FFFFFF; color: var(--body); text-align: left; margin: 0; box-shadow: 0 24px 60px rgba(0,0,0,.45); overflow: hidden; scroll-margin-top: 24px; }
+  .quiz-card { background: #FFFFFF; color: var(--body); text-align: left; margin: 0 auto; max-width: 680px; border-radius: var(--radius-card); box-shadow: 0 24px 60px rgba(0,0,0,.45); overflow: hidden; scroll-margin-top: 24px; }
   .quiz-progress { display: flex; gap: 5px; padding: 16px 20px 0; }
   .quiz-progress span { flex: 1; height: 5px; background: var(--hair); transition: background .3s cubic-bezier(.4,0,.2,1); }
   .quiz-progress span.done { background: var(--brand); }
@@ -142,7 +132,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .opt-btn { font-family: var(--text); font-weight: 700; font-size: 1rem; color: var(--body); background: #FFFFFF; border: 1.5px solid var(--hair); border-radius: var(--radius); padding: .8rem 1rem; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 14px; min-height: 48px; transition: border-color .18s ease, background .18s ease; }
   .opt-btn:hover, .opt-btn:focus-visible { border-color: var(--brand); background: var(--tint); outline: none; }
   .opt-btn.is-on { border-color: var(--brand); background: var(--tint); box-shadow: inset 0 0 0 1.5px var(--brand); }
-  .options { margin-bottom: 1rem; }
   .opt-btn i { flex: none; width: 26px; font-size: 20px; color: var(--brand); text-align: center; }
   .opt-btn small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; line-height: 1.4; margin-top: 1px; }
   @media (min-width: 640px) {
@@ -191,17 +180,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .lp-result p { color: rgba(255,255,255,.8); font-size: .95rem; margin: 0; }
   .lp-results-note { color: rgba(255,255,255,.7); font-size: .85rem; margin: 0; }
 
-  /* ---------- steps section ---------- */
-  .lp-steps-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr); gap: 48px; align-items: start; }
-  .lp-steps { list-style: decimal; margin: 0; padding: 0 0 0 2.4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; }
-  .lp-steps li { padding-left: .4rem; }
-  .lp-steps li::marker { font-family: var(--display); font-size: 1.6rem; color: var(--brand); }
-  .lp-steps strong { display: block; font-weight: 700; margin-bottom: 2px; }
-  .lp-steps p { margin: 0; font-size: .95rem; color: var(--muted); }
-  .lp-panel { background: var(--tint); padding: 28px; }
-  .lp-panel h3 { font-family: var(--display); font-weight: 400; font-size: 1.35rem; margin: 0 0 10px; color: var(--ink); }
-  .lp-panel p:last-child { margin-bottom: 0; }
-
   /* ---------- reviews ---------- */
   .lp-rating { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; font-weight: 700; }
   .lp-stars { display: inline-flex; gap: 2px; }
@@ -218,9 +196,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .lp-standard p:last-child { margin-bottom: 0; }
   .lp-standard-k { font-family: var(--display); font-size: 1.1rem; color: #FFFFFF !important; margin: 0 0 8px; }
   .lp-standard-big { font-family: var(--display); font-size: clamp(1.7rem, 2.6vw, 2.2rem); line-height: 1.12; color: #FFFFFF !important; margin: 0 0 16px; }
-  .lp-next ol { margin: 0 0 24px; padding-left: 1.2em; }
-  .lp-next li { margin-bottom: 12px; }
-  .lp-next li strong { color: var(--ink); }
+  .lp-step-cards { display: grid; gap: 12px; margin: 0 0 20px; }
+  .lp-step-card { background: var(--tint); padding: 18px 20px; border-radius: var(--radius); }
+  .lp-step-card strong { display: block; color: var(--ink); margin-bottom: 4px; }
+  .lp-step-card p { margin: 0; font-size: .95rem; }
 
   /* ---------- FAQ ---------- */
   .lp-faq { max-width: 780px; }
@@ -232,21 +211,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .lp-faq .lp-faq-a { padding: 0 22px 20px; }
   .lp-faq .lp-faq-a p:last-child { margin-bottom: 0; }
 
-  /* ---------- offices ---------- */
-  .lp-offices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 40px; margin-top: 8px; }
-  .lp-office { padding: 0; }
-  .lp-office strong { display: block; font-family: var(--display); font-weight: 400; font-size: 1.25rem; color: var(--ink); margin-bottom: 6px; }
-  .lp-office p { margin: 0; }
-  .lp-office a { color: var(--brand); font-weight: 700; text-decoration: underline; }
-
-  /* ---------- closing band ---------- */
-  .lp-close { position: relative; background: var(--brand-dark) url('img/phoenix-palms-texture.webp') center / cover no-repeat; color: #FFFFFF; text-align: center; }
-  .lp-close::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,18,28,.78), rgba(7,18,28,.9)); }
-  .lp-close .lp-wrap { position: relative; }
-  .lp-close .lp-h2 { color: #FFFFFF; font-size: clamp(2rem, 4.5vw, 3.4rem); }
-  .lp-close p { color: rgba(255,255,255,.88); max-width: 36em; margin: 0 auto 26px; }
-  .lp-close-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-
   /* ---------- footer ---------- */
   .lp-foot { background: #FFFFFF; color: var(--muted); padding: 40px 24px 48px; font-size: .85rem; border-top: 1px solid var(--hair); }
   .lp-foot-in { max-width: 900px; margin: 0 auto; text-align: center; }
@@ -255,24 +219,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* ---------- phones ---------- */
   @media (max-width: 1024px) {
-    .lp-hero-in { grid-template-columns: minmax(0, 1fr); }
-    .lp-hero-art { display: none; }
     .lp-results { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .lp-steps-grid { grid-template-columns: 1fr; }
-    .lp-reviews { grid-template-columns: 1fr; }
     .lp-next { grid-template-columns: 1fr; }
-    .lp-offices { grid-template-columns: 1fr; }
   }
   @media (max-width: 768px) {
     .lp-page { font-size: 16px; }
     .lp-head-in { padding: 10px 16px; }
     .lp-head-logo img { height: 44px; }
-    .lp-head .lp-btn { display: none; }
-    .lp-tel { font-size: 16px; }
-    .lp-hero-in { padding: 1rem 16px 1.8rem; gap: 0; }
-    .lp-kicker, .lp-hero-sub { display: none; }
-    .lp-proofline { display: block; }
-    .lp-hero h1 { font-size: 1.5rem; letter-spacing: .01em; margin-bottom: 10px; }
+    .lp-head-call { padding: 10px 16px; font-size: 15px; min-height: 44px; }
+    .lp-hero-in { padding: 1rem 16px 1.8rem; }
+    .lp-hero h1 { font-size: 1.6rem; letter-spacing: .01em; margin-bottom: 12px; }
+    .lp-proof-strip { gap: 6px 14px; margin-bottom: 14px; }
+    .lp-proof-strip span { font-size: 12px; }
     .quiz-body { padding: 1rem .95rem 1.1rem; }
     .quiz-progress { padding: 12px 14px 0; }
     .quiz-step h2 { font-size: 1.2rem; }
@@ -282,11 +240,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .opt-btn i { font-size: 17px; width: 22px; }
     .reassure { padding: .6rem .9rem; font-size: .78rem; }
     .lp-wrap { padding: 0 16px; }
-    .lp-results { grid-template-columns: 1fr; gap: 22px; }
-    .lp-steps { grid-template-columns: 1fr; }
-    .lp-close-actions .lp-btn { width: 100%; }
+    .lp-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; gap: 12px; margin: 0 -16px; padding: 4px 16px 12px; scroll-padding: 0 16px; scrollbar-width: none; }
+    .lp-scroll::-webkit-scrollbar { display: none; }
+    .lp-scroll > * { flex: 0 0 82%; scroll-snap-align: start; min-width: 0; }
+    .lp-results.lp-scroll > .lp-result { flex-basis: 72%; background: rgba(255,255,255,.06); padding: 18px; border-radius: var(--radius); }
+    .lp-step-cards.lp-scroll > .lp-step-card { flex-basis: 84%; }
   }
-  @media (max-width: 360px) { .lp-tel { font-size: 15px; } }
 </style>
 </head>
 <body>
@@ -300,8 +259,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="lp-head-in">
     <div class="lp-head-logo"><img src="img/sargon-law-group-logo.png" alt="Sargon Law Group, Personal Injury Attorneys" width="720" height="205"></div>
     <div class="lp-head-right">
-      <a class="lp-tel" href="tel:+16232639513">Call 623-263-9513</a>
-      <a class="lp-btn" href="#lp-form">Free Case Review</a>
+      <a class="lp-btn lp-head-call" href="tel:+16232639513">Call 623-263-9513</a>
     </div>
   </div>
 </div>
@@ -309,33 +267,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ HERO + SURVEY ============ -->
 <section class="lp-hero">
   <div class="lp-hero-in">
-    <div class="lp-hero-copy">
-      <p class="lp-kicker">Car accidents, Arizona</p>
-      <h1>Car Gone? Call&nbsp;Sargon.</h1>
-      <p class="lp-proofline">4.9 stars on Google<span aria-hidden="true">&middot;</span>24/7<span aria-hidden="true">&middot;</span>No upfront fee</p>
-      <p class="lp-hero-sub">Your car is wrecked and the insurer has already called. Answer a few quick questions and find out if Sargon Law Group can take your case. Free consultation, no fee unless we recover compensation for you.</p>
-
-      <div class="quiz-card" id="lp-form">
-        <div class="quiz-progress" id="quizProgress" aria-hidden="true"></div>
-        <form class="quiz-body" id="quizForm" novalidate>
-          <div id="stepMount"></div>
-          <div class="hp-wrap" aria-hidden="true">
-            <label>Company website (leave blank)<input type="text" name="company_website" id="hpField" tabindex="-1" autocomplete="off"></label>
-          </div>
-        </form>
-        <div class="reassure"><strong>Free consultation.</strong> We listen to your whole story first. About two minutes. Submitting does not create an attorney-client relationship.</div>
-      </div>
-
-      <div class="lp-proof-strip">
-        <span><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5 6 12.5 14 3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4"/></svg>432 Google reviews, 4.9 stars</span>
-        <span><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5 6 12.5 14 3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4"/></svg>Available 24/7</span>
-        <span><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5 6 12.5 14 3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4"/></svg>No fee unless we recover compensation for you</span>
-        <span><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5 6 12.5 14 3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4"/></svg>Intake in English and Spanish</span>
-      </div>
+    <h1>Car Gone? Call&nbsp;Sargon.</h1>
+    <div class="lp-proof-strip">
+      <span><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5 6 12.5 14 3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4"/></svg>432 Google reviews, 4.9 stars</span>
+      <span><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5 6 12.5 14 3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4"/></svg>Available 24/7</span>
+      <span><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5 6 12.5 14 3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4"/></svg>No fee unless we recover compensation for you</span>
+      <span><svg width="13" height="13" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8.5 6 12.5 14 3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4"/></svg>Intake in English and Spanish</span>
     </div>
-    <div class="lp-hero-art">
-      <img src="img/sargon-khananisho-portrait.webp" alt="Attorney Sargon Khananisho of Sargon Law Group" width="960" height="1280" fetchpriority="high">
-      <div class="lp-hero-cap">Attorney Sargon Khananisho</div>
+
+    <div class="quiz-card" id="lp-form">
+      <div class="quiz-progress" id="quizProgress" aria-hidden="true"></div>
+      <form class="quiz-body" id="quizForm" novalidate>
+        <div id="stepMount"></div>
+        <div class="hp-wrap" aria-hidden="true">
+          <label>Company website (leave blank)<input type="text" name="company_website" id="hpField" tabindex="-1" autocomplete="off"></label>
+        </div>
+      </form>
+      <div class="reassure"><strong>Free consultation.</strong> We listen to your whole story first. About two minutes. Submitting does not create an attorney-client relationship.</div>
     </div>
   </div>
 </section>
@@ -345,7 +293,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="lp-wrap">
     <h2 class="lp-h2">Recent results for drivers and passengers</h2>
     <p class="lp-lead" style="color:rgba(255,255,255,.88)">A few of the settlements Sargon Law Group has secured in vehicle cases.</p>
-    <div class="lp-results">
+    <div class="lp-results lp-scroll">
       <div class="lp-result"><strong>$6M</strong><em>Motorcycle accident settlement</em><p>Motorcyclist was cut off by an SUV. Serious injuries, future care required, liability heavily disputed.</p></div>
       <div class="lp-result"><strong>$1.5M</strong><em>Auto accident settlement</em><p>Inattentive driver hit a retired couple's vehicle. Multiple insurance carriers involved. Full policy limits secured.</p></div>
       <div class="lp-result"><strong>$1M</strong><em>Car accident settlement</em><p>Commercial truck failed to avoid a vehicle at an intersection. Insurance denied coverage. Sargon Law Group fought back and secured policy limits.</p></div>
@@ -355,38 +303,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- ============ WHAT TO DO ============ -->
-<section class="lp-sec">
-  <div class="lp-wrap">
-    <h2 class="lp-h2">What to do after a car accident in Arizona</h2>
-    <div class="lp-steps-grid">
-      <div>
-        <p class="lp-lead">If you've already done some of these, good. If you haven't, start where you are.</p>
-        <ol class="lp-steps">
-          <li><div><strong>Get to a safe spot</strong><p>Out of traffic, hazards on, before anything else.</p></div></li>
-          <li><div><strong>Call the police</strong><p>Get the responding officer's name and the report number.</p></div></li>
-          <li><div><strong>See a doctor, even if you feel okay</strong><p>Neck and back injuries often show up a day or two later.</p></div></li>
-          <li><div><strong>Get witness contact details</strong><p>Names and phone numbers of anyone who saw it.</p></div></li>
-          <li><div><strong>Take photos and video</strong><p>Both cars, the road, the damage, your injuries.</p></div></li>
-          <li><div><strong>Talk to a lawyer before the insurance company</strong><p>What you say in a recorded statement can be used against your claim.</p></div></li>
-        </ol>
-      </div>
-      <div class="lp-panel">
-        <h3>How long you have to file in Arizona</h3>
-        <p>You generally must file a personal injury lawsuit within two years of the accident date. Some claims expire within 180 days.</p>
-        <p>You do not have to decide today. Evidence does fade, though, so the sooner an attorney looks at your case, the better. The consultation is free.</p>
-        <p><a class="lp-btn" href="#lp-form">Check My Case</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ REVIEWS ============ -->
 <section class="lp-sec lp-sec-ground">
   <div class="lp-wrap">
     <h2 class="lp-h2">What clients say on Google</h2>
     <div class="lp-rating"><span class="lp-stars" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#E8A317" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#E8A317" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#E8A317" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#E8A317" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#E8A317" d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg></span><span>Rated 4.9 stars across 432 Google reviews, Phoenix office</span></div>
-    <div class="lp-reviews">
+    <div class="lp-reviews lp-scroll">
       <div class="lp-review">
         <blockquote>After my husband and I were hit in a car accident we were beyond frustrated with having to total out our car and with lots of neck and back pain. I'm so glad we found Sargon. He listened to us, responded quickly to our constant questions, communicated to all of the insurance companies and doctors, and got us the highest amount of money we could receive. We are so satisfied with the outcome and appreciate his professionalism and work ethic. This is the guy you want on your team!</blockquote>
         <cite>Mary Graham</cite><span class="lp-small lp-muted">Google review</span>
@@ -416,11 +338,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div>
         <h2 class="lp-h2">What happens after you submit</h2>
         <p class="lp-lead">Every case here runs on the Sargon Standard. Here is what that means for you, in order.</p>
-        <ol>
-          <li><strong>Someone reaches out and listens.</strong> Our intake team calls first, then an attorney hears your whole story. In a hurry? Call 623-263-9513.</li>
-          <li><strong>We handle the insurer and the paperwork.</strong> The firm requests the police report, your medical records and your photos, and contacts the insurance company so you stop having to.</li>
-          <li><strong>You get updates on a set schedule.</strong> Even when nothing changed, you hear what was done and what comes next.</li>
-        </ol>
+        <div class="lp-step-cards lp-scroll">
+          <div class="lp-step-card"><strong>1. Someone reaches out and listens.</strong><p>Our intake team calls first, then an attorney hears your whole story. In a hurry? Call 623-263-9513.</p></div>
+          <div class="lp-step-card"><strong>2. We handle the insurer and the paperwork.</strong><p>The firm requests the police report, your medical records and your photos, and contacts the insurance company so you stop having to.</p></div>
+          <div class="lp-step-card"><strong>3. You get updates on a set schedule.</strong><p>Even when nothing changed, you hear what was done and what comes next.</p></div>
+        </div>
         <p>You pay nothing up front. Cases are taken on a contingency fee basis, meaning you do not pay until the firm recovers compensation for you. The firm is available 24/7, and intake is available in English and Spanish.</p>
         <p><a class="lp-btn" href="#lp-form">Get My Free Case Review</a></p>
       </div>
@@ -457,31 +379,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <summary>Do you speak Spanish?</summary>
         <div class="lp-faq-a"><p>Yes. Se habla espa&ntilde;ol. Intake is available in English and Spanish.</p></div>
       </details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ OFFICES ============ -->
-<section class="lp-sec">
-  <div class="lp-wrap">
-    <h2 class="lp-h2">Three offices in the Phoenix area</h2>
-    <p class="lp-lead">Open 24 hours, Monday through Sunday. Call <a href="tel:+16232639513" style="color:var(--brand);font-weight:700">623-263-9513</a> any time.</p>
-    <div class="lp-offices">
-      <div class="lp-office"><strong>Phoenix, Biltmore</strong><p>4105 N 20th St Ste 260<br>Phoenix, AZ 85016</p></div>
-      <div class="lp-office"><strong>Phoenix, West</strong><p>4660 W Thomas Rd Suite B<br>Phoenix, AZ 85031</p></div>
-      <div class="lp-office"><strong>Chandler</strong><p>4910 W Ray Rd #1<br>Chandler, AZ 85226</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CLOSING BAND ============ -->
-<section class="lp-sec lp-close">
-  <div class="lp-wrap">
-    <h2 class="lp-h2">Accident? Car Gone? Call&nbsp;Sargon.</h2>
-    <p>You already know the line. The Sargon Standard is what happens after you call. Free consultation, no fee unless we recover compensation for you.</p>
-    <div class="lp-close-actions">
-      <a class="lp-btn" href="#lp-form">Check My Case</a>
-      <a class="lp-btn lp-btn-ghost" href="tel:+16232639513">Call 623-263-9513</a>
     </div>
   </div>
 </section>
@@ -749,6 +646,17 @@ var lpQuizConfig = {
   var current = 0;
 
   function el(html) { var d = document.createElement('div'); d.innerHTML = html; return d.firstElementChild; }
+  function phoneDigits(v) {
+    var d = String(v || '').replace(/\D/g, '');
+    if (d.length === 11 && d.charAt(0) === '1') d = d.slice(1);
+    return d.slice(0, 10);
+  }
+  function formatPhone(v) {
+    var d = phoneDigits(v);
+    if (d.length < 4) return d;
+    if (d.length < 7) return '(' + d.slice(0, 3) + ') ' + d.slice(3);
+    return '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6);
+  }
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
   }
@@ -797,47 +705,31 @@ var lpQuizConfig = {
       node = el('<div class="quiz-step">' + label +
         '<h2>' + esc(step.title) + '</h2>' +
         (step.sub ? '<p class="step-sub">' + esc(step.sub) + '</p>' : '') +
-        '<p class="step-error" data-error>' + esc(step.error || 'Please pick an answer.') + '</p>' +
         '<div class="options" role="group" aria-label="' + esc(step.title) + '">' +
         step.options.map(function (o) {
-          var on = answers[step.id] === o.value;
-          return '<button type="button" class="opt-btn' + (on ? ' is-on' : '') + '" data-value="' + esc(o.value) + '" aria-pressed="' + (on ? 'true' : 'false') + '">' +
+          return '<button type="button" class="opt-btn' + (answers[step.id] === o.value ? ' is-on' : '') + '" data-value="' + esc(o.value) + '">' +
             (o.icon ? '<i class="fa-solid ' + esc(o.icon) + '" aria-hidden="true"></i>' : '') +
             '<span>' + esc(o.label) + (o.small ? '<small>' + esc(o.small) + '</small>' : '') + '</span></button>';
         }).join('') +
-        '</div>' +
-        '<button type="button" class="cta-btn" data-next>Continue &rarr;</button>' +
-        backBtnHtml(step) + '</div>');
-      var picked = answers[step.id] || '';
+        '</div>' + backBtnHtml(step) + '</div>');
       node.querySelectorAll('[data-value]').forEach(function (btn) {
         btn.addEventListener('click', function () {
+          /* stale-click guard: a rapid double-click's second event lands on
+             the detached node after render() and must not advance again */
           if (!$mount.contains(node)) return;
-          picked = btn.getAttribute('data-value');
-          node.querySelectorAll('[data-value]').forEach(function (b) {
-            var on = b === btn;
-            b.classList.toggle('is-on', on);
-            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          var val = btn.getAttribute('data-value');
+          var opt = step.options.filter(function (o) { return o.value === val; })[0] || {};
+          answers[step.id] = val;
+          clearReview(step.id);
+          /* A step that is no longer shown (the attorney follow-up after a
+             changed answer) must not keep its answer or its review flag. */
+          steps.forEach(function (s) {
+            if (s.showIf && !s.showIf(answers)) { delete answers[s.id]; clearReview(s.id); }
           });
-          var err = node.querySelector('[data-error]');
-          if (err) err.classList.remove('show');
+          if (opt.outcome === 'disqualify') return disqualify(step, val);
+          if (opt.outcome === 'review') noteReview(step.id);
+          next();
         });
-      });
-      node.querySelector('[data-next]').addEventListener('click', function () {
-        /* stale-click guard: a rapid double-click's second event lands on
-           the detached node after render() and must not advance again */
-        if (!$mount.contains(node)) return;
-        if (!picked) return showError(node);
-        var opt = step.options.filter(function (o) { return o.value === picked; })[0] || {};
-        answers[step.id] = picked;
-        clearReview(step.id);
-        /* A step that is no longer shown (the attorney follow-up after a
-           changed answer) must not keep its answer or its review flag. */
-        steps.forEach(function (s) {
-          if (s.showIf && !s.showIf(answers)) { delete answers[s.id]; clearReview(s.id); }
-        });
-        if (opt.outcome === 'disqualify') return disqualify(step, picked);
-        if (opt.outcome === 'review') noteReview(step.id);
-        next();
       });
       wireBack(node);
     }
@@ -905,15 +797,21 @@ var lpQuizConfig = {
         '<h2>' + esc(step.title) + '</h2>' +
         '<p class="step-sub">' + esc(step.sub || '') + '</p>' +
         '<p class="step-error" data-error>' + esc(step.error) + '</p>' +
-        '<div class="field-row"><input class="quiz-input" type="tel" name="q_phone" placeholder="Phone number" autocomplete="tel" aria-label="Phone number"></div>' +
+        '<div class="field-row"><input class="quiz-input" type="tel" inputmode="numeric" name="q_phone" placeholder="(602) 555-0100" autocomplete="tel" aria-label="Phone number" maxlength="14"></div>' +
         (lpQuizConfig.partialLeads && step.note ? '<p class="lp-partial-note">' + esc(step.note) + '</p>' : '') +
         '<button type="button" class="cta-btn" data-next style="margin-top:.4rem">' + esc(step.button) + ' &rarr;</button>' +
         backBtnHtml(step) + '</div>');
-      if (answers.phone) node.querySelector('[name="q_phone"]').value = answers.phone;
+      var phoneInput = node.querySelector('[name="q_phone"]');
+      if (answers.phone) phoneInput.value = answers.phone;
+      /* digits only, formatted as the visitor types: (602) 555-0100 */
+      phoneInput.addEventListener('input', function () {
+        phoneInput.value = formatPhone(phoneInput.value);
+      });
       wireSingleInput(node, step, function (val) {
-        var digits = val.replace(/\D/g, '');
-        if (digits.length < 10 || digits.length > 11) return false;
-        answers.phone = val;
+        var digits = phoneDigits(val);
+        if (digits.length !== 10) return false;
+        answers.phone = formatPhone(digits);
+        answers.phone_e164 = '+1' + digits;
         if (lpQuizConfig.partialLeads) sendLead('partial_phone');
         return true;
       });
@@ -1072,6 +970,7 @@ var lpQuizConfig = {
       last_name: answers.last_name || '',
       email: answers.email || '',
       phone: answers.phone || '',
+      phone_e164: answers.phone_e164 || '',
       consent_status: reason === 'submit' ? (answers.consent_status || 'not-recorded') : 'pending',
       consent_timestamp: reason === 'submit' ? (answers.consent_timestamp || '') : '',
       consent_text_version: lpQuizConfig.consentTextVersion,
